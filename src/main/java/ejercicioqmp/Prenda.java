@@ -1,19 +1,15 @@
 package ejercicioqmp;
 
 public class Prenda {
-  private String colorPrimario;
-  private String colorSecundario;
+  private Color colorPrimario;
+  private Color colorSecundario;
   private TipoPrenda tipo;
-  private String material;
+  private Material material;
 
-  public Prenda(TipoPrenda _tipo,String _material, String _colorPrimario){
-    this.tipo = _tipo;
-    this.material = _material;
-    this.colorPrimario = _colorPrimario;
-  }
-
-  public Prenda(TipoPrenda _tipo,String _material, String _colorPrimario, String _colorSecundario){
-    this(_tipo, _material, _colorPrimario);
-    this.colorSecundario = _colorSecundario;
+  public Prenda(TipoPrenda tipo, Material material, Color colorPrimario, Color colorSecundario){
+    this.tipo = tipo;
+    this.material = material;
+    this.colorPrimario = colorPrimario;
+    this.colorSecundario = colorSecundario;
   }
 }
