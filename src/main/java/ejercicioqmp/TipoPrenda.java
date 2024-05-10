@@ -1,16 +1,16 @@
 package ejercicioqmp;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TipoPrenda {
   private CategoriaPrenda categoria;
   private String nombre;
-  private Collection<Material> materialesConsistentes = Collections.emptyList();
+  private List<Material> materialesConsistentes = new ArrayList<Material>();
 
-  public TipoPrenda(String _nombre, CategoriaPrenda _categoria){
-    this.nombre = _nombre;
-    this.categoria = _categoria;
+  public TipoPrenda(String nombre, CategoriaPrenda categoria) {
+    this.nombre = nombre;
+    this.categoria = categoria;
   }
 
   public void agregarMaterialConsistente(Material material) {
@@ -30,8 +30,12 @@ public class TipoPrenda {
   }
 
   public void validarMaterialConsistente(Material material) {
-    if(!materialesConsistentes.contains(material)){
+    if (!materialesConsistentes.contains(material)) {
       throw new IllegalArgumentException("El material no es consistente con el tipo");
     }
+  }
+
+  public CategoriaPrenda getCategoria() {
+    return categoria;
   }
 }

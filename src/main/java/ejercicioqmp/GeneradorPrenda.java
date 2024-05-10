@@ -6,9 +6,10 @@ public class GeneradorPrenda {
   private TipoPrenda tipo;
   private Material material;
   private Trama trama = Trama.LISA;
+  private NivelFormalidad nivelFormalidad;
 
   public void elegirTipoPrenda(TipoPrenda tipo) {
-    if(tipo == null) {
+    if (tipo == null) {
       throw new IllegalArgumentException("El tipo de prenda no puede estar vacío");
     }
 
@@ -16,11 +17,11 @@ public class GeneradorPrenda {
   }
 
   public void elegirMaterial(Material material) {
-    if(tipo == null) {
+    if (tipo == null) {
       throw new RuntimeException("Debe elegir un tipo de prenda primero");
     }
 
-    if(material == null) {
+    if (material == null) {
       throw new IllegalArgumentException("El material no puede estar vacío");
     }
 
@@ -29,15 +30,15 @@ public class GeneradorPrenda {
   }
 
   public void elegirTrama(Trama trama) {
-    if(trama == null) {
+    if (trama == null) {
       throw new IllegalArgumentException("La trama no puede estar vacía");
     }
 
-    if(tipo == null) {
+    if (tipo == null) {
       throw new RuntimeException("Debe elegir un tipo de prenda primero");
     }
 
-    if(material == null) {
+    if (material == null) {
       throw new RuntimeException("Debe elegir un material primero");
     }
 
@@ -45,15 +46,15 @@ public class GeneradorPrenda {
   }
 
   public void elegirColor(Color colorPrimario, Color colorSecundario) {
-    if(colorPrimario == null) {
+    if (colorPrimario == null) {
       throw new IllegalArgumentException("El color primario no puede estar vacío");
     }
 
-    if(tipo == null) {
+    if (tipo == null) {
       throw new RuntimeException("Debe elegir un tipo de prenda primero");
     }
 
-    if(material == null) {
+    if (material == null) {
       throw new RuntimeException("Debe elegir un material primero");
     }
 
@@ -61,19 +62,36 @@ public class GeneradorPrenda {
     this.colorSecundario = colorSecundario;
   }
 
-  public Prenda crearPrenda() {
-    if(this.tipo == null) {
+  public void elegirFormalidad(NivelFormalidad nivelFormalidad) {
+    if (nivelFormalidad == null) {
+      throw new IllegalArgumentException("El nivel de formalidad no puede estar vacío");
+    }
+
+    if (tipo == null) {
       throw new RuntimeException("Debe elegir un tipo de prenda primero");
     }
 
-    if(this.material == null) {
+    if (material == null) {
       throw new RuntimeException("Debe elegir un material primero");
     }
 
-    if(this.colorPrimario == null) {
+    this.nivelFormalidad = nivelFormalidad;
+  }
+
+  public Prenda crearPrenda() {
+    if (this.tipo == null) {
+      throw new RuntimeException("Debe elegir un tipo de prenda primero");
+    }
+
+    if (this.material == null) {
+      throw new RuntimeException("Debe elegir un material primero");
+    }
+
+    if (this.colorPrimario == null) {
       throw new RuntimeException("Debe elegir un color primario primero");
     }
 
-    return new Prenda(this.tipo, this.material, this.colorPrimario, this.colorSecundario);
+    return new Prenda(this.tipo, this.material, this.colorPrimario, this.colorSecundario,
+        this.nivelFormalidad);
   }
 }

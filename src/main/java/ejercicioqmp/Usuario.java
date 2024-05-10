@@ -1,18 +1,40 @@
 package ejercicioqmp;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
-  private Collection<Prenda> guardarropas;
+  private int edad;
+  private List<Prenda> guardarropas = new ArrayList<Prenda>();
+  private ServiceProvider provider;
 
-  public Usuario(){}
+  public Usuario(int edad, ServiceProvider provider) {
+    if (provider == null) {
+      throw new IllegalArgumentException("El provider no puede estar vacío");
+    }
 
-  private void ValidarPrenda(Prenda _prenda){
+    this.edad = edad;
+    this.provider = provider;
+  }
+
+  private void validarPrenda(Prenda prenda) {
     //TODO: Relevar cuáles son los criterios para que una prenda sea considerada como válida
   }
 
-  public void AgregarPrenda(Prenda _prenda){
-    this.ValidarPrenda(_prenda);
-    guardarropas.add(_prenda);
+  public MotorBasico obtenerMotorDeSugerencias() {
+    return provider.obtenerMotorDeSugerencias();
+  }
+
+  public void agregarPrenda(Prenda prenda) {
+    this.validarPrenda(prenda);
+    guardarropas.add(prenda);
+  }
+
+  public List<Prenda> obtenerPrendas() {
+    return guardarropas;
+  }
+
+  public int obtenerEdad() {
+    return edad;
   }
 }
