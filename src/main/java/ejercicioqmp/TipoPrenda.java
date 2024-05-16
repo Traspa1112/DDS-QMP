@@ -7,6 +7,7 @@ public class TipoPrenda {
   private CategoriaPrenda categoria;
   private String nombre;
   private List<Material> materialesConsistentes = new ArrayList<Material>();
+  private float temperaturaMaximaAdecuada;
 
   public TipoPrenda(String nombre, CategoriaPrenda categoria) {
     this.nombre = nombre;
@@ -37,5 +38,9 @@ public class TipoPrenda {
 
   public CategoriaPrenda getCategoria() {
     return categoria;
+  }
+
+  public float getTemperaturaMaximaAdecuada() {
+    return temperaturaMaximaAdecuada;
   }
 }

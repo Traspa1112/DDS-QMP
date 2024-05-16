@@ -2,6 +2,8 @@ package ejercicioqmp;
 
 public class ServiceProvider {
   private MotorBasico motorDeSugerencias = new MotorBasico();
+  private Clima apiClima;
+  private String ubicacionClima;
 
   public MotorBasico obtenerMotorDeSugerencias() {
     return motorDeSugerencias;
@@ -13,6 +15,18 @@ public class ServiceProvider {
     }
 
     this.motorDeSugerencias = motorDeSugerencias;
+  }
+
+  public Clima obtenerApiClima() {
+    return apiClima;
+  }
+
+  public void setApiClima(Clima apiClima) {
+    if (apiClima == null) {
+      throw new IllegalArgumentException("La api del clima no puede estar vacía");
+    }
+
+    this.apiClima = apiClima;
   }
 
   private static final ServiceProvider INSTANCE = new ServiceProvider();

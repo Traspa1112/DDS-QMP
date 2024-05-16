@@ -35,4 +35,8 @@ public class Prenda {
   public boolean esInformal() {
     return formalidad == NivelFormalidad.INFORMAL;
   }
+
+  public float obtenerTemperaturaMaximaAdecuada(){
+    return this.tipo.getTemperaturaMaximaAdecuada();
+  }
 }

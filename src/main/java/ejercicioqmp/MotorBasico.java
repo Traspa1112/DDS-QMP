@@ -4,8 +4,11 @@ import com.google.common.collect.Lists;
 import java.util.List;
 
 public class MotorBasico {
+  private ServiceProvider provider;
   protected List<Prenda> obtenerPrendasValidas(Usuario usuario) {
-    return usuario.obtenerPrendas();
+    Clima apiClima = provider.obtenerApiClima();
+    return usuario.obtenerPrendas().stream().filter(prenda ->
+        prenda.obtenerTemperaturaMaximaAdecuada() <= apiClima.obtenerClima()).toList();
   }
 
   public List<Atuendo> generarSugerencias(Usuario usuario) {
