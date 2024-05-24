@@ -1,11 +1,15 @@
 package ejercicioqmp;
 
+import java.security.Guard;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Usuario {
   private int edad;
-  private List<Prenda> guardarropas = new ArrayList<Prenda>();
+  //TODO: Inicializar guardarropas vacío en vez de lista vacía
+  private List<Guardarropas> guardaGuardarropas = new ArrayList<Guardarropas>();
+  private List<Guardarropas> guardarropasAjenos = new ArrayList<Guardarropas>();
+
   private ServiceProvider provider;
 
   public Usuario(int edad, ServiceProvider provider) {
@@ -25,9 +29,12 @@ public class Usuario {
     return provider.obtenerMotorDeSugerencias();
   }
 
-  public void agregarPrenda(Prenda prenda) {
+  public void agregarPrenda(Prenda prenda, Guardarropas guardarropas) {
+    if(!this.guardaGuardarropas.contains(guardarropas)){
+      throw new IllegalArgumentException("El guardarropas no pertenece al usuario");
+    }
     this.validarPrenda(prenda);
-    guardarropas.add(prenda);
+    guardarropas.agregarPrenda(prenda);
   }
 
   public List<Prenda> obtenerPrendas() {
@@ -37,4 +44,16 @@ public class Usuario {
   public int obtenerEdad() {
     return edad;
   }
+
+  public void agregarGuardarropasAjeno(Guardarropas guardarropas){
+    if(guardaGuardarropas.contains(guardarropas)){
+      throw new IllegalArgumentException("No te podes compartir el guardarropas con vos mismo");
+    }
+    if(guardarropasAjenos.contains(guardarropas)){
+      throw new IllegalArgumentException("Ya agregaste este guardarropas");
+    }
+    guardarropasAjenos.add(guardarropas);
+  }
+
+  public void
 }
