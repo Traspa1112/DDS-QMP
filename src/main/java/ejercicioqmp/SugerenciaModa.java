@@ -1,9 +1,7 @@
 package ejercicioqmp;
 
-import java.security.Guard;
-
 public interface SugerenciaModa {
-  void aceptarSugerencia(Guardarropas guardarropa);
-  void rechazarSugerencia(Guardarropas guardarropas);
-  void rollback(Guardarropas guardarropas);
+  void aceptar(Guardarropas guardarropa);
+  void rechazar(Guardarropas guardarropas);
+  void deshacer(Guardarropas guardarropas);
 }

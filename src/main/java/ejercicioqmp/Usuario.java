@@ -2,12 +2,14 @@ package ejercicioqmp;
 
 import java.security.Guard;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Usuario {
   private int edad;
   //TODO: Inicializar guardarropas vacío en vez de lista vacía
-  private List<Guardarropas> guardaGuardarropas = new ArrayList<Guardarropas>();
+  private List<Guardarropas> guardaGuardarropas = Arrays.asList(new Guardarropas());
   private List<Guardarropas> guardarropasAjenos = new ArrayList<Guardarropas>();
 
   private ServiceProvider provider;
@@ -37,8 +39,14 @@ public class Usuario {
     guardarropas.agregarPrenda(prenda);
   }
 
+  public Guardarropas obtenerGuardarropasInicial(){
+    return this.guardaGuardarropas.get(0);
+  }
+
   public List<Prenda> obtenerPrendas() {
-    return guardarropas;
+    return this.guardaGuardarropas.stream()
+        .flatMap(guardarropas -> guardarropas.obtenerPrendas().stream())
+        .collect(Collectors.toList());
   }
 
   public int obtenerEdad() {
@@ -55,5 +63,9 @@ public class Usuario {
     guardarropasAjenos.add(guardarropas);
   }
 
-  public void
+  public List<SugerenciaModa> obtenerSugerencias(){
+    return this.guardaGuardarropas.stream()
+        .flatMap(guardarropas -> guardarropas.obtenerSugerencias().stream())
+        .collect(Collectors.toList());
+  }
 }

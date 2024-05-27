@@ -12,14 +12,15 @@ public class AdhesionPrendaSugerencia implements SugerenciaModa{
     this.prenda = prenda;
   }
 
-  public void aceptarSugerencia(Guardarropas guardarropas){
+  public void aceptar(Guardarropas guardarropas){
     if(this.estado != EstadoSugerencia.PENDIENTE_EVALUACION){
       throw new RuntimeException("No se puede modificar el estado de la sugerencia ACEPTADA/RECHAZADA");
     }
     guardarropas.agregarPrenda(prenda);
     this.estado = EstadoSugerencia.ACEPTADA;
   }
-  public void rechazarSugerencia(Guardarropas guardarropas){
+  
+  public void rechazar(Guardarropas guardarropas){
     if(this.estado != EstadoSugerencia.PENDIENTE_EVALUACION){
       throw new RuntimeException("No se puede modificar el estado de la sugerencia ACEPTADA/RECHAZADA");
     }
@@ -27,7 +28,7 @@ public class AdhesionPrendaSugerencia implements SugerenciaModa{
     this.estado = EstadoSugerencia.RECHAZADA;
   }
 
-  public void rollback(Guardarropas guardarropas){
+  public void deshacer(Guardarropas guardarropas){
     if(this.estado != EstadoSugerencia.ACEPTADA){
       throw new RuntimeException("Solo se pueden deshacer las sugerencias aceptadas");
     }
