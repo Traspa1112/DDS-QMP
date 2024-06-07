@@ -1,12 +1,12 @@
 package ejercicioqmp;
 
-import java.security.Guard;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Usuario {
+  private Atuendo sugerenciaDiaria;
   private int edad;
   //TODO: Inicializar guardarropas vacío en vez de lista vacía
   private List<Guardarropas> guardaGuardarropas = Arrays.asList(new Guardarropas());
@@ -67,5 +67,13 @@ public class Usuario {
     return this.guardaGuardarropas.stream()
         .flatMap(guardarropas -> guardarropas.obtenerSugerencias().stream())
         .collect(Collectors.toList());
+  }
+
+  public void calcularSugerenciaDiaria() {
+    this.sugerenciaDiaria = this.obtenerMotorDeSugerencias().generarSugerencias(this).get(0);
+  }
+
+  public Atuendo obtenerSugerenciaDiaria() {
+    return sugerenciaDiaria;
   }
 }
